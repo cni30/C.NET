@@ -132,7 +132,9 @@
             }
         }
 
-        //判断当前有没有填满的行，有则消除、加分
+        /// <summary>
+        /// 判断当前有没有填满的行，有则消除、加分
+        /// </summary>
         private void ClearRow()
         {
             int clearrows = 0;
@@ -141,23 +143,23 @@
                 bool isfull = true;
                 for (int j = 0; j < m_columns; j++)
                 {
-                    if (m_arr[i, j] == 0)
+                    if (m_arr[i, j] == 0)                   //为1表示有方块，0表示没有方块
                     {
-                        isfull = false;
+                        isfull = false;                     //未满
                         break;
                     }
                 }
-                if (isfull == true)
+                if (isfull == true)                         //这一行的每一列都为1，则满
                 {
-                    clearrows++;
-                    m_score++;
+                    clearrows++;                            //
+                    m_score++;                              //得分+1
                     for (int k = 0; k < m_columns; k++)
                     {
-                        m_arr[i, k] = 0;
+                        m_arr[i, k] = 0;                    //满则消行
                     }
                 }
             }
-            for (int i = m_rows - 1; i > m_rows - m_height - 1; i--)
+            for (int i = m_rows - 1; i > m_rows - m_height - 1; i--)        //开始遍历倒数第2到r-h行
             {
                 bool isfull = true;
                 for (int j = 0; j < m_columns; j++)
